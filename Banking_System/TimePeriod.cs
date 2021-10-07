@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Banking_System
 {
-    public struct TimePeriod
+    public class TimePeriod
     {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

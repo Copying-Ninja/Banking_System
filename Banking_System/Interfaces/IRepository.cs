@@ -8,13 +8,11 @@ namespace Banking_System
 {
     public interface IRepository<T> where T: class
     {
-        IEnumerable<T> GetAll(string fileName);
         IEnumerable<T> FindAll(string fileName, Func<T,bool> predicate);
-        T Find(Func<T,bool> predicate);
-        T Update(T obj);
+        T First(IEnumerable<T> sourse ,Func<T,bool> predicate);
+        void Update( T obj);
         IEnumerable<T> Update(string fileName, Func<T, bool> predicate, T obj);
-        void Delete();
+        IEnumerable<T> Delete(IEnumerable<T> sourse, Guid objId);
         bool Save(string fileName, IEnumerable<T> objects);
-
     }
 }

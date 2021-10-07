@@ -12,5 +12,6 @@ namespace Banking_System
         Guid ID { get; set; }
         DateTime Created { get; set; }
         DateTime Updated { get; set; }
+        //void Update(object obj);
     }
 }

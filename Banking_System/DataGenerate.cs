@@ -9,6 +9,8 @@ namespace Banking_System
     public static class DataGenerate
     {
         static Random _rnd = new Random();
+
+        #region CreateObject
         public static Address CreateAddress()
         {
             Address address = new Address()
@@ -20,7 +22,7 @@ namespace Banking_System
             };
             return address;
         }
-        public static Office CreateOfice()
+        public static Office CreateOffice()
         {
             
             Office office = new Office()
@@ -28,13 +30,12 @@ namespace Banking_System
                 Address = CreateAddress(),
                 Title = $"Office {_rnd.Next(15000)}",
                 Description = $"Description {_rnd.Next(15000)}",
-                StartTime = Get_rndDate(),
-                EndTime = Get_rndDate(),
+                StartTime = GetRandomDate(),
+                EndTime = GetRandomDate(),
                 StaffCount = _rnd.Next(500),
-                OfficeType = Get_rndEnumValue<ClientOfficeType>(),
-                Created = Get_rndDate(),
-                Updated = Get_rndDate(),
-                ID = Guid.NewGuid()
+                OfficeType = GetRandomEnumValue<ClientOfficeType>(),
+                Created = GetRandomDate(),
+                Updated = GetRandomDate(),
             };
             return office;
         }
@@ -43,14 +44,13 @@ namespace Banking_System
 
             Account acc = new Account()
             {
-                Type = Get_rndEnumValue<AcountType>(),
+                Type = GetRandomEnumValue<AcountType>(),
                 Balance =  _rnd.Next(9999999),
                 Currency = $"Currency {_rnd.Next(100)}",
                 OwnerId = Guid.NewGuid(),
-                Status = Get_rndEnumValue<AcountStatus>(),
-                Created = Get_rndDate(),
-                Updated = Get_rndDate(),
-                ID = Guid.NewGuid()
+                Status = GetRandomEnumValue<AcountStatus>(),
+                Created = GetRandomDate(),
+                Updated = GetRandomDate(),
             };
             return acc;
         }
@@ -68,18 +68,122 @@ namespace Banking_System
         {
             var client = new Client()
             {
-                Type = Get_rndEnumValue<ClientOfficeType>(),
+                Type = GetRandomEnumValue<ClientOfficeType>(),
                 Name = $"Name_{_rnd.Next(5000)}",
                 Description = $"Description {_rnd.Next(15000)}",
                 Accounts = CreateAccountList(_rnd.Next(10)),
                 Buckets = CreateGuidList(_rnd.Next(100)),
-                Created = Get_rndDate(),
-                Updated = Get_rndDate(),
-                ID = Guid.NewGuid()
+                Created = GetRandomDate(),
+                Updated = GetRandomDate(),
             };
             return client;
         }
-        public static IEnumerable<Client> CreatClientList(int quantity)
+        public static StaffUser CreateStaffUser()
+        {
+            var staff = new StaffUser()
+            {
+                Type = GetRandomEnumValue<ClientOfficeType>(),
+                Name = $"Name_{_rnd.Next(5000)}",
+                Description = $"Description {_rnd.Next(15000)}",
+                Accounts = CreateAccountList(_rnd.Next(10)),
+                Buckets = CreateGuidList(_rnd.Next(100)),
+                Created = GetRandomDate(),
+                Updated = GetRandomDate(),
+                JobTitle = $"Position {_rnd.Next(20)}",
+            };
+            return staff;
+        }
+        public  static TimePeriod CreateTimePeriod()
+        {
+            var period = new TimePeriod()
+            {
+                StartDate = GetRandomDate(),
+                EndDate = GetRandomDate(),
+            };
+            return period;
+        }
+        public static Product CreateProduct()
+        {
+            var staff = new Product()
+            {
+                Type = GetRandomEnumValue<ProductType>(),
+                Title = $"Product #{_rnd.Next(9999)}",
+                Owner = CreateClient(),
+                Description = $"Description {_rnd.Next(99999)}",
+                Price = _rnd.Next(100, 99999) + _rnd.NextDouble(),
+                Period = CreateTimePeriod(),
+                Created = GetRandomDate(),
+                Updated = GetRandomDate(),              
+            };
+            return staff;
+        }
+        public static Bank CreateBank()
+        {
+            var bank = new Bank()
+            {
+                Title = $"Bank #{_rnd.Next(9999)}",
+                Accounts = CreateAccountList(_rnd.Next(9999)),
+                Description = $"Description of Bank {_rnd.Next(99999)}",
+                Created = GetRandomDate(),
+                Updated = GetRandomDate(),
+                Offices = CreateOfficeList(_rnd.Next(99999)),
+                //Users
+            };
+            return bank;
+        }
+        public static void CreateBanking()
+        {
+            Banking.Accounts = CreateAccountList(_rnd.Next(100000,9999999));
+            Banking.Addresses = CreateAddressList(_rnd.Next(1000,999999));
+            Banking.Banks = CreateBankList(_rnd.Next(100,999999));
+            Banking.Clients = CreateClientList(_rnd.Next(10000,999999999));
+            Banking.ContactInfos = CreateContactInfoList(_rnd.Next(10000,999999999));
+            Banking.Offices = CreateOfficeList(_rnd.Next(1000,999999));
+            Banking.Products = CreateProductList(_rnd.Next(1000,999999999));
+            Banking.StaffUsers = CreateStaffUserList(_rnd.Next(10000, 999999999));
+        }
+        #endregion
+
+        #region CreateObjectList
+
+        public static IEnumerable<Address> CreateAddressList(int quantity)
+        {
+            var objects = new List<Address>();
+            for (int i = 0; i < quantity; i++)
+            {
+                objects.Add(CreateAddress());
+            }
+            return objects;
+        }
+        public static IEnumerable<Office> CreateOfficeList(int quantity)
+        {
+            var objects = new List<Office>();
+            for (int i = 0; i < quantity; i++)
+            {
+                objects.Add(CreateOffice());
+            }
+            return objects;
+        }
+        public static IEnumerable<Account> CreateAccountList(int quantity)
+        {
+            var objects = new List<Account>();
+            for (int i = 0; i < quantity; i++)
+            {
+                objects.Add(CreateAccount());
+            }
+            return objects;
+        }
+        
+        public static IEnumerable<StaffUser> CreateStaffUserList(int quantity)
+        {
+            var objects = new List<StaffUser>();
+            for (int i = 0; i < quantity; i++)
+            {
+                objects.Add(CreateStaffUser());
+            }
+            return objects;
+        }
+        public static IEnumerable<Client> CreateClientList(int quantity)
         {
             var objects = new List<Client>();
             for (int i = 0; i < quantity; i++)
@@ -88,7 +192,7 @@ namespace Banking_System
             }
             return objects;
         }
-        public static IEnumerable<ContactInfo> CreatContactInfoList(int quantity)
+        public static IEnumerable<ContactInfo> CreateContactInfoList(int quantity)
         {
             var objects = new List<ContactInfo>();
             for (int i = 0; i < quantity; i++)
@@ -106,33 +210,34 @@ namespace Banking_System
             }
             return objects;
         }
-        public static IEnumerable<Account> CreateAccountList(int quantity)
+        public static IEnumerable<Product> CreateProductList(int quantity)
         {
-            var objects = new List<Account>();
+            var objects = new List<Product>();
             for (int i = 0; i < quantity; i++)
             {
-                objects.Add(CreateAccount());
+                objects.Add(CreateProduct());
+            }
+            return objects;
+        }
+        public static IEnumerable<Bank> CreateBankList(int quantity)
+        {
+            var objects = new List<Bank>();
+            for (int i = 0; i < quantity; i++)
+            {
+                objects.Add(CreateBank());
             }
             return objects;
         }
 
+        #endregion
 
-/*        public static IEnumerable<T> CreateObjectList(int quantity) where T : class
-        {
-            var objects = new List<T>();
-            for (int i = 0; i < quantity; i++)
-            {
-                objects.Add(CreateAddress());
-            }
-            return objects;
-        }*/
-        public static DateTime Get_rndDate()
+        public static DateTime GetRandomDate()
         {
             DateTime start = new DateTime(1955, 1, 1);
             int range = (DateTime.Today - start).Days;
             return start.AddDays(_rnd.Next(range));
         }
-        public static T Get_rndEnumValue<T>()
+        public static T GetRandomEnumValue<T>()
         {
             var v = Enum.GetValues(typeof(T));
             return (T)v.GetValue(_rnd.Next(v.Length));

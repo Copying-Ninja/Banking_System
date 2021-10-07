@@ -11,7 +11,7 @@ namespace Banking_System
        
         public ProductType Type { get; set; }
         public string Title { get; set; }
-        public string Drscription { get; set; }
+        public string Description { get; set; }
         public Client Owner { get; set; }
         public double Price { get; set; }
         public TimePeriod Period { get; set; }

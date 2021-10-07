@@ -46,26 +46,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account.cs" />
+    <Compile Include="DTO\Account.cs" />
     <Compile Include="AcountStatus.cs" />
-    <Compile Include="AcountType.cs" />
+    <Compile Include="Enums\AcountType.cs" />
     <Compile Include="Address.cs" />
-    <Compile Include="Bank.cs" />
+    <Compile Include="DTO\Bank.cs" />
     <Compile Include="Banking.cs" />
-    <Compile Include="Client.cs" />
+    <Compile Include="Base.cs" />
+    <Compile Include="DTO\Client.cs" />
     <Compile Include="ContactInfo.cs" />
     <Compile Include="DataGenerate.cs" />
     <Compile Include="DataService.cs" />
-    <Compile Include="IObject.cs" />
-    <Compile Include="IOService.cs" />
-    <Compile Include="IRepository.cs" />
-    <Compile Include="Office.cs" />
-    <Compile Include="ClientOfficeType.cs" />
-    <Compile Include="Product.cs" />
-    <Compile Include="ProductType.cs" />
+    <Compile Include="Interfaces\IObject.cs" />
+    <Compile Include="Interfaces\IOService.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="DTO\Office.cs" />
+    <Compile Include="Enums\ClientOfficeType.cs" />
+    <Compile Include="DTO\Product.cs" />
+    <Compile Include="Enums\ProductType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StaffUser.cs" />
+    <Compile Include="DTO\StaffUser.cs" />
+    <Compile Include="Services\ReportService.cs" />
     <Compile Include="TimePeriod.cs" />
   </ItemGroup>
   <ItemGroup>
