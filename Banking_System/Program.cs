@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Banking_System.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,27 @@ namespace Banking_System
         }
         static void Main(string[] args)
         {
-            int n = 3;
+            DataGenerate.CreateBanking();
+            foreach (var item in Banking.Offices)
+            {
+                Console.WriteLine(item.StaffCount);
+            }
+            var officeIds = ReportService.GetOfficeIdBy(0,300);
+            foreach (var item in officeIds)
+            {
+                Console.WriteLine(item);
+            }
+
+            var offices = DataGenerate.CreateOfficeList(100);
+            foreach (var item in offices)
+            {
+                Console.WriteLine(item.StaffCount);
+            }
+            var off = DataGenerate.CreateOffice();
+            Console.WriteLine(off.StaffCount);
+
+
+            /*int n = 3;
             //var bank = new Bank();
             //bank.Title = "MonoBank";
             string[] arr = { "s1", "s2" };
@@ -36,7 +57,7 @@ namespace Banking_System
             Console.WriteLine(bank);
             Console.WriteLine(n);
             Console.WriteLine(v);
-            Console.WriteLine(num);
+            Console.WriteLine(num);*/
             /*var sevice = new DataService<Bank>();
             var banks = new List<Bank>();
             for (int i = 0; i < 10; i++)
