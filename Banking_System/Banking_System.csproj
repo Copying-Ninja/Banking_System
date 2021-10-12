@@ -57,6 +57,7 @@
     <Compile Include="ContactInfo.cs" />
     <Compile Include="DataGenerate.cs" />
     <Compile Include="DataService.cs" />
+    <Compile Include="Extenstions.cs" />
     <Compile Include="Interfaces\IObject.cs" />
     <Compile Include="Interfaces\IOService.cs" />
     <Compile Include="Interfaces\IRepository.cs" />

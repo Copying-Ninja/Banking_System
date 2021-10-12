@@ -22,28 +22,34 @@ namespace Banking_System
         {
             
         }
+        
+
+        
+
+        public static Data MyВ(Data data1, Data data2)
+        {
+            return new Data() { MyProperty1 = data1.MyProperty1 + data2.MyProperty1 };
+        }
         static void Main(string[] args)
         {
-            DataGenerate.CreateBanking();
-            foreach (var item in Banking.Offices)
-            {
-                Console.WriteLine(item.StaffCount);
-            }
-            var officeIds = ReportService.GetOfficeIdBy(0,300);
+
+            var officeIds = ReportService.GetOfficeIdBy(0, 300);
             foreach (var item in officeIds)
             {
                 Console.WriteLine(item);
             }
 
-            var offices = DataGenerate.CreateOfficeList(100);
-            foreach (var item in offices)
-            {
-                Console.WriteLine(item.StaffCount);
-            }
+            var acc = DataGenerate.CreateAccountList(2);
+            var avg = acc.Avg();
+            Console.WriteLine(avg);
+
+            var strigs = new List<string>() { "q1233", "adgauidk", "skgff" };
+            var str = strigs.Select();
+            Console.WriteLine(str);
+
+
             var off = DataGenerate.CreateOffice();
-            Console.WriteLine(off.StaffCount);
-
-
+            //Console.WriteLine(off.StaffCount);
             /*int n = 3;
             //var bank = new Bank();
             //bank.Title = "MonoBank";
@@ -85,5 +91,9 @@ namespace Banking_System
         public int MyProperty2{ get; set; }
         public int MyProperty3 { get; set; }
 
+        public static Data operator +(Data a, Data b)
+        {
+            return new Data() { MyProperty1 = a.MyProperty1 + b.MyProperty1 };
+        }
     }
 }

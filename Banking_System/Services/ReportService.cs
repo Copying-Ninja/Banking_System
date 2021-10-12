@@ -20,6 +20,12 @@ namespace Banking_System.Services
         {
             return Banking.Banks.Where(x => x.Title.Contains(title) && x.Title.EndsWith(lastChar.ToString()));
         }
+        /*public static void GetBankInfoBy()
+        {
+            var balance = Banking.Banks.SelectMany(x => x.Accounts).Min(x => x.Balance);
+            balance = Banking.Banks.FirstOrDefault(x => x.Accounts.Min(y => y.Balance) == balance);
+
+        }*/
 
         public static IEnumerable<Bank> GetBankInfoBy(string desc, AcountStatus acountStatus)
         {
